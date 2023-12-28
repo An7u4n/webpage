@@ -21,8 +21,8 @@ namespace webpageApi.Controllers
             _context = context;
         }
 
-        // GET: api/Tasks
-        [HttpGet]
+        // GET All
+        [HttpGet] //localhost:7056/api/Tasks
         public async Task<ActionResult<IEnumerable<Models.Task>>> GetTasks()
         {
           if (_context.Tasks == null)
@@ -32,8 +32,8 @@ namespace webpageApi.Controllers
             return await _context.Tasks.ToListAsync();
         }
 
-        // GET: api/Tasks/5
-        [HttpGet("{id}")]
+        // GET by Id
+        [HttpGet("{id}")] // localhost:7056/api/Taks/{id}
         public async Task<ActionResult<Models.Task>> GetTask(int id)
         {
           if (_context.Tasks == null)
@@ -50,9 +50,8 @@ namespace webpageApi.Controllers
             return task;
         }
 
-        // PUT: api/Tasks/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        // PUT by Id
+        [HttpPut("{id}")] // 
         public async Task<IActionResult> PutTask(int id, Models.Task task)
         {
             if (id != task.Id)
