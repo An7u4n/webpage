@@ -5,17 +5,6 @@ namespace webpageApi
 {
     public class Program
     {
-        // Trying to fix cors errors
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseCors();
-
-            app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -39,7 +28,7 @@ namespace webpageApi
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.AllowAnyOrigin()
+                        policy.WithOrigins("http://localhost:3000")
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });
