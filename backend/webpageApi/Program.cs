@@ -5,6 +5,30 @@ namespace webpageApi
 {
     public class Program
     {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+        }
+        // Trying to fix cors errors
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseCors();
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
