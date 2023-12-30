@@ -9,7 +9,7 @@ function SideBar(props) {
   const getRequest = () => {
     let url = 'https://localhost:7056/api/Tasks';
 
-    fetch(url, { mode: 'no-cors' })
+    fetch(url)
       .then(function (response) {
         if (!response.ok) {
           throw new Error('Error de red: ' + response.status);
