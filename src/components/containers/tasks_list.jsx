@@ -1,57 +1,49 @@
 import React, { useEffect, useState } from 'react';
-// import PropTypes from 'prop-types';
 import { Task } from '../../models/task.class';
 import TaskComponent from '../pure/task';
-import { LEVEL } from '../../models/levels.enum';
 
 function TaskListComponent() {
-  const defaultTask = new Task('Task', 'Task description', true, LEVEL.low);
-
-  // Connection with API
-  // Load the saved tasks
-  const getRequest = () => {
-    let url = 'https://localhost:7056/api/Tasks';
-
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => buildTasks(data))
-      .catch((error) => console.error('Error:', error));
-  };
-  // OnLoad function manager
-  const onPageLoad = () => {
-    // Load Tasks
-    getRequest();
-  };
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    onPageLoad();
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://localhost:7056/api/Tasks', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setTasks(
+          data.map((taskData) => (
+            <TaskComponent
+              key={taskData.id}
+              task={
+                new Task(
+                  taskData.name,
+                  taskData.description,
+                  taskData.status,
+                  taskData.priority,
+                )
+              }
+            />
+          )),
+        );
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  const [content, setContent] = useState('');
-
-  const buildTasks = (data) => {
-    let taskBody = new Task(
-      data[0].name,
-      data[0].description,
-      data[0].status,
-      data[0].priority,
-    );
-    let newContent = <TaskComponent task={taskBody} />;
-    setContent((prevContent) => prevContent + newContent);
-  };
-
-  return (
-    <div className="p-2 bg-gray-400 flex-1">
-      <TaskComponent task={defaultTask} />
-    </div>
-  );
+  return <div className="p-2 bg-gray-400 flex-1">{tasks}</div>;
 }
-
-// TaskListComponent.propTypes = {};
 
 export default TaskListComponent;
