@@ -1,15 +1,30 @@
 import React from 'react';
 
-const CloseButton = () => {
-  const onClickHandler = (e) => {
-    console.log('Hola', e);
-  };
+// TODO: Refresh page after delete
 
+const CloseButton = () => {
+  const deleteTask = (e) => {
+    const url =
+      'https://localhost:7056/api/Tasks/' + e.target.closest('article').id;
+    const options = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    fetch(url, options)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error:' + response.status);
+        }
+        console.log('Deleted');
+      })
+      .catch((error) => console.error('Error', error));
+  };
   return (
     <button
       type="button"
       className="absolute top-0 right-0 m-2 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-      onClick={onClickHandler}
+      onClick={deleteTask}
     >
       <span className="sr-only">Close menu</span>
 

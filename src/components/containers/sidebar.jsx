@@ -2,10 +2,16 @@ import React from 'react';
 import SideBarTaskComponent from '../pure/sidebartask';
 import { Task } from '../../models/task.class';
 
-function SideBar(props) {
-  const defaultTask = new Task('Task 1', 'Description Task 1', false, 'normal');
+// TODO: Create project class
 
-  // Get request to: https://localhost:7056/api/Tasks
+function SideBar(props) {
+  const defaultTask = new Task(
+    1,
+    'Task 1',
+    'Description Task 1',
+    false,
+    'normal',
+  );
 
   return (
     <div className="w-40 h-screen p-2 bg-gray-900 relative top-0 left-0">

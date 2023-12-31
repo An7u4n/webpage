@@ -5,7 +5,10 @@ import CloseButton from './close_button';
 
 const TaskComponent = ({ task }) => {
   return (
-    <div className="bg-red-300 rounded-2xl flex flex-col relative mb-2 p-2">
+    <article
+      className="bg-red-300 rounded-2xl flex flex-col relative mb-2 p-2"
+      id={task.id}
+    >
       <CloseButton />
       <h2 className="text-white font-mono font-bold text-[48px]">
         {task.name}
@@ -13,7 +16,7 @@ const TaskComponent = ({ task }) => {
       <p>{task.description}</p>
       <p>{task.priority}</p>
       <p>Task is: {task.completed ? 'Completed' : 'In Progress'}</p>
-    </div>
+    </article>
   );
 };
 

@@ -26,6 +26,7 @@ function TaskListComponent() {
               key={taskData.id}
               task={
                 new Task(
+                  taskData.id,
                   taskData.name,
                   taskData.description,
                   taskData.status,
@@ -43,7 +44,7 @@ function TaskListComponent() {
     fetchData();
   }, []);
 
-  return <div className="p-2 bg-gray-400 flex-1">{tasks}</div>;
+  return <section className="p-2 bg-gray-400 flex-1">{tasks}</section>;
 }
 
 export default TaskListComponent;
