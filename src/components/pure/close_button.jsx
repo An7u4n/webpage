@@ -4,8 +4,7 @@ import React from 'react';
 
 const CloseButton = () => {
   const deleteTask = (e) => {
-    const url =
-      'https://localhost:7056/api/Tasks/' + e.target.closest('article').id;
+    const url = 'https://localhost:7056/api/Tasks/' + e.target.closest('tr').id;
     const options = {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
@@ -16,14 +15,14 @@ const CloseButton = () => {
         if (!response.ok) {
           throw new Error('Error:' + response.status);
         }
-        console.log('Deleted');
+        window.location.reload();
       })
       .catch((error) => console.error('Error', error));
   };
   return (
     <button
       type="button"
-      className="absolute top-0 right-0 m-2 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+      className="rounded-md inline-flex items-center justify-center text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
       onClick={deleteTask}
     >
       <span className="sr-only">Close menu</span>

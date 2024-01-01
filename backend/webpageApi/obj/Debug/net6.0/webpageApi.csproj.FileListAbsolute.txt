@@ -292,3 +292,6 @@ C:\Users\migue\Documents\WebDesign\React\webpage\backend\webpageApi\obj\Debug\ne
 C:\Users\migue\Documents\WebDesign\React\webpage\backend\webpageApi\obj\Debug\net6.0\webpageApi.pdb
 C:\Users\migue\Documents\WebDesign\React\webpage\backend\webpageApi\obj\Debug\net6.0\webpageApi.genruntimeconfig.cache
 C:\Users\migue\Documents\WebDesign\React\webpage\backend\webpageApi\obj\Debug\net6.0\ref\webpageApi.dll
+C:\Users\migue\Documents\WebDesign\React\webpage\backend\webpageApi\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\migue\Documents\WebDesign\React\webpage\backend\webpageApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\migue\Documents\WebDesign\React\webpage\backend\webpageApi\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
